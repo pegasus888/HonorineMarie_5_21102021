@@ -8,6 +8,8 @@ getProducts();
 
 // Variables
 const products = document.getElementsByTagName("a");
+console.log(products);
+
 
 // Getting the products
 /*class Products {
