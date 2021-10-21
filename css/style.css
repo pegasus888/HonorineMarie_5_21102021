@@ -36,11 +36,11 @@ h2 {
 
 /*Colors*/
 :root {
-	--main-color: #3498db;
+	--main-color: #70a265;
 	--secondary-color: #2c3e50;
 	--text-color: #3d4c68;
-	--footer-text-color: #a6b0b3; 
-	--footer-main-color: #3d424f; 
+	--footer-text-color: #3a0b55;
+	--footer-main-color: #684230a8;
 	--footer-secondary-color: #2d2f3e;
 	/*background-color: var(--main-color);*/
 }
@@ -55,7 +55,7 @@ h2 {
 /*informations*/
 .informations {
 	font-size: 13px;
-	background-color: var(--main-color);
+	background-color: #8ebb9b;
 }
 .informations img {
 	height: 17px;
@@ -102,7 +102,7 @@ h2 {
 }
 .menu nav ul li:hover {
 	font-weight: 600;
-	color: #3498db !important;
+	color:  rgba(24, 16, 79, 0.9) 0 0 22px 6px !important;
 }
 
 /*banniere*/
@@ -124,6 +124,10 @@ main {
 	background-color: var(--main-color);
 }
 
+.titles {
+	color: var(--secondary-color);
+}
+
 /*items*/
 .items {
 	margin-bottom: 135px;
@@ -137,10 +141,10 @@ main {
 	color: unset;
 }
 .items a:hover article {
-	box-shadow: rgba(42, 18, 206, 0.9) 0 0 22px 6px;
+	box-shadow: rgba(24, 16, 79, 0.9) 0 0 22px 6px;
 }
 .items article {
-	background-color: var(--secondary-color);
+	background-color: #9a9f9e69;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -213,7 +217,9 @@ footer .footerSecondary {
 	padding: 25px 0;
 }
 
-
+.footcopy {
+	color: white;
+}
 
 
 /***************/
@@ -238,7 +244,7 @@ footer .footerSecondary {
 	}
 }
 
-@media (max-width: 575.98px) { 
+@media (max-width: 575.98px) {
 	.informations ul {
 		flex-direction: column;
 		align-items: center;
