@@ -1,9 +1,12 @@
+// Get all products from the API
 fetch('http://localhost:3000/api/products')
     .then(response => response.json())
     .then(products => {
 
 
     console.log(products)
+
+// Display all products on HTML
     let result = '';
 products.forEach(product => {
     result += `

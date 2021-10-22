@@ -1,46 +1,33 @@
-// Get the product's id
+// Get the product's id from the URL
 let params = (new URL(document.location)).searchParams;
 let id = params.get('id');
 console.log(id);
 
 
-fetch('http://localhost:3000/api/products/' + id)
+// Get a single product by id from the API
+fetch('http://localhost:3000/api/products/' +id)
     .then(response => response.json())
-    .then(items => {
+    .then(products => {
 
-const items = [... document.querySelectorAll(".item")];
 
-// Get information for a single product
+console.log(products);
+
+
+// Display a single product on HTML
     let result = '';
-items.forEach(item => {
+products.forEach(product => {
     result += `
-    <section class="item">
-    <article>
-        <div class="item__img">
             <img src=${product.imageUrl} alt=${product.altTxt}>
-        </div>
-        <div class="item__content">
-
-            <div class="item__content__titlePrice">
             <h1 id=${product.name}</h1>
             <p>Prix : <span id=${product.price}</span>€</p>
-            </div>
-
-            <div class="item__content__description">
-            <p class="item__content__description__title">Description :</p>
             <p id=${product.description}</p>
-            </div>
-
-            <div class="item__content__settings">
-            <div class="item__content__settings__color">
-                <label for="color-select">Choisir une couleur :</label>
-                <select name="color-select" id="colors">
-                    <option value="">--SVP, choisissez une couleur --</option>
-                    <option value=${product.colors}</option>
-                </select>
-            </div>
-    `
+            <option value=${product.colors}</option>
+            `
 })
 console.log(result);
-document.getElementsByClassName("item").innerHTML=result;
-    })
+document.getElementsByClassName("item__img").innerHTML=result;
+document.getElementsById("title").innerHTML=result;
+document.getElementsById("price").innerHTML=result;
+document.getElementsById("description").innerHTML=result;
+document.getElementsById("colors").innerHTML=result;
+})
