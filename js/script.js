@@ -6,7 +6,7 @@ fetch('http://localhost:3000/api/products')
 
     console.log(products)
 
-// Display all products on HTML
+// Display all products on index.html
     let result = '';
 products.forEach(product => {
     result += `

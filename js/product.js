@@ -5,17 +5,17 @@ console.log(id);
 
 
 // Get a single product by id from the API
-fetch('http://localhost:3000/api/products/' +id)
+fetch(`http://localhost:3000/api/products/${id}`)
     .then(response => response.json())
-    .then(products => {
+    .then(productsDetails => {
 
 
-console.log(products);
+console.log(productsDetails);
 
 
-// Display a single product on HTML
+// Display a single product on product.html
     let result = '';
-products.forEach(product => {
+productsDetails.forEach(product => {
     result += `
             <img src=${product.imageUrl} alt=${product.altTxt}>
             <h1 id=${product.name}</h1>
