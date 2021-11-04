@@ -8,12 +8,13 @@ fetch('http://localhost:3000/api/products')
 // Display all products on index.html
 let result = '';
 products.forEach(product => {
+    console.log(product);
     result += `
     <a href="product.html?id=${product._id}">
         <article>
-            <img src=${product.imageUrl} alt=${product.altTxt}>
-            <h3 class=${product.name}</h3>
-            <p class=${product.description}</p>
+            <img src=${product.imageUrl} alt="${product.altTxt}">
+            <h3 class="productName">${product.name}</h3>
+            <p class="productDescription">${product.description}</p>
         </article>
     </a>
     `
