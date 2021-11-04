@@ -39,7 +39,7 @@ async function getDetailsById() {
     })();
 
 
-// Add to cart
+// Single product: Add to cart
     const addToCartBtn = document.getElementById("addToCart");
 addToCartBtn.addEventListener("click", () => {
 	const itemId = idCheck();
@@ -53,7 +53,7 @@ addToCartBtn.addEventListener("click", () => {
             alert("Ajouter un article");
         } else {
 
-            // Save in localStorage
+            // Single Product: Save in localStorage (Just a single one not all products !!!)
             const itemInCart = [itemId, itemColor];
             localStorage.setItem(itemInCart, itemQuantity);
             window.location.href = "./cart.html";
