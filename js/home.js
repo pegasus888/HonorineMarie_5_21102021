@@ -236,3 +236,26 @@ div.innerHTML = `
 }
 
 // end of cart.js ******************************************
+
+// products.js add to cart ********************************
+// Single product: Add to cart
+const addToCartBtn = document.getElementById("addToCart");
+addToCartBtn.addEventListener("click", () => {
+	const itemId = idCheck();
+	const itemColor = document.getElementById("colors").value;
+	const itemQuantity = document.getElementById("quantity").value;
+
+        // Color confirmation, Quantity confirmation != 0
+        if (itemColor === "") {
+            alert("Choisir une couleur");
+        } else if (itemQuantity == 0) {
+            alert("Ajouter un article");
+        } else {
+
+            // Single Product: Save in localStorage (Just a single one not all products !!!)
+            const itemInCart = [itemId, itemColor];
+            localStorage.setItem(itemInCart, itemQuantity);
+            window.location.href = "./cart.html";
+        }
+});
+// end of products.js *************************************

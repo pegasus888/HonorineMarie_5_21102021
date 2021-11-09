@@ -53,9 +53,61 @@ addToCartBtn.addEventListener("click", () => {
             alert("Ajouter un article");
         } else {
 
-            // Single Product: Save in localStorage (Just a single one not all products !!!)
-            const itemInCart = [itemId, itemColor];
-            localStorage.setItem(itemInCart, itemQuantity);
-            window.location.href = "./cart.html";
-        }
-});
+
+		// Cart = object: 3 items {id,qté,color}
+		let cartContent = {
+			id: itemId,
+			quantity: itemQuantity,
+			color: itemColor,
+		};
+
+		// Cart: localStorage: array: 3 items {id,qté,color}
+let myLocalStorage = JSON.parse(localStorage.getItem("product"));
+
+		// Check localStorage
+		if (myLocalStorage === null) {
+			myLocalStorage = [];
+		}
+
+		// Add to localStorage
+		const addItemLocalStorage = () => {
+			myLocalStorage.push(cartContent);
+			localStorage.setItem("product", JSON.stringify(myLocalStorage));
+		};
+
+
+		  // Fonction qui vérifie si le même produit existe (même Id et même couleur)
+		const raiseTheQuantityIfSameProduct = () => {
+		let foundTheSameProduct = false;
+		myLocalStorage.forEach((element) => {
+			if (element.id === itemId && element.color === itemColor) {
+			element.quantity += itemQuantity;
+			foundTheSameProduct = true;
+			}
+		});
+		if (!foundTheSameProduct) {
+			// Appel de la fonction suivante :
+			addItemLocalStorage();
+		}
+		};
+
+		// Appel la Fonction suivante :
+		raiseTheQuantityIfSameProduct();
+
+		localStorage.setItem("product", JSON.stringify(myLocalStorage));
+
+		// Fonction Confirmation ajout au panier
+		const confirmation = () => {
+		if (window.confirm(`Ajouté au panier! Cliquer OK pour voir votre panier ou ANNULER pour continuer le shopping 💸 !`)) {
+			window.location.href = "cart.html";
+		} else {
+			window.location.href = "index.html";
+		}
+		};
+
+		// Appel la Fonction suivante :
+		confirmation();
+
+
+				}
+		});
