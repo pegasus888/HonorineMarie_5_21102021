@@ -43,9 +43,9 @@ addToCartBtn.addEventListener("click", () => {
 	const itemQuantity = document.getElementById("quantity").value;
 	// Confirm color and quantity != 0
 	if (itemColor === "") {
-		alert("Il est nécessaire de choisir une couleur 🌈");
+		alert("Choisir une couleur");
 	} else if (itemQuantity == 0) {
-		alert("Il faut au moins ajouter un Kanap 🛋️");
+		alert("Ajouter un article");
 	} else {
 		// Push in the localStorage
 		const itemInCart = [itemId, itemColor];
