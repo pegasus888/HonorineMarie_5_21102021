@@ -41,6 +41,7 @@ addToCartBtn.addEventListener("click", () => {
 	const itemId = idVerification();
 	const itemColor = document.getElementById("colors").value;
 	const itemQuantity = document.getElementById("quantity").value;
+
 	// Confirm color and quantity != 0
 	if (itemColor === "") {
 		alert("Choisir une couleur");
@@ -48,8 +49,8 @@ addToCartBtn.addEventListener("click", () => {
 		alert("Ajouter un article");
 	} else {
 		// Push in the localStorage
-		const itemInCart = [itemId, itemColor];
-		localStorage.setItem(itemInCart, itemQuantity);
+		const itemInCart = [itemId, itemQuantity, itemColor];
+		localStorage.setItem("myItemInCart", JSON.stringify(itemInCart));
 		window.location.href = "./cart.html";
 	}
 });
