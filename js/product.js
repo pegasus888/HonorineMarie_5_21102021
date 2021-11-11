@@ -48,7 +48,7 @@ addToCartBtn.addEventListener("click", () => {
 	} else if (itemQuantity == 0) {
 		alert("Ajouter un article");
 	} else {
-		// Push in the localStorage
+		// Push to localStorage
 		const itemInCart = [itemId, itemColor];
 		localStorage.setItem(itemInCart, itemQuantity);
 		window.location.href = "./cart.html";

@@ -63,11 +63,11 @@ function emptyCart() {
     // Single product: delete
 	deleteItem();
 	// Single product: quantity
-	itemQuantityRefresh();
+	itemQuantityUpdate();
 	// All products in cart: total
-	totalItemInCartRefresh();
+	totalItemInCartUpdate();
 	// All products in cart: total price
-	totalPriceRefresh();
+	totalPriceUpdate();
 })();
 
 
@@ -75,7 +75,7 @@ function emptyCart() {
 /* Cart: Items Data */
 
 // Cart: total price
-function totalPriceRefresh() {
+function totalPriceUpdate() {
 	let quantitySelector = document.querySelectorAll(".itemQuantity");
 	let totalCartPrice = 0;
 	for (let i = 0; i < quantitySelector.length; i++) {
@@ -89,7 +89,7 @@ function totalPriceRefresh() {
 
 
 // Cart: Items: quantity
-function totalItemInCartRefresh() {
+function totalItemInCartUpdate() {
 	let quantitySelector = document.querySelectorAll(".itemQuantity");
 	let itemAmount = 0;
 	for (let i = 0; i < quantitySelector.length; i++) {
@@ -98,8 +98,8 @@ function totalItemInCartRefresh() {
 	const totalQuantityDisplay = document.getElementById("totalQuantity");
 	totalQuantityDisplay.innerHTML = itemAmount;
 
-	// Refresh total price => New total price
-	totalPriceRefresh();
+	// Update total price => New total price
+	totalPriceUpdate();
 	// Cart: check if empty
 	emptyCart();
 }
