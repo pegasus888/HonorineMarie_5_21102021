@@ -122,15 +122,15 @@ function deleteItem() {
 			localStorage.removeItem(localStorageKey, itemQuantity);
 			articleDOM.remove();
 
-			// Cart: Items: quantity: refresh => New quantity
-			totalItemInCartRefresh();
+			// Cart: Items: quantity: update => New quantity
+			totalItemInCartUpdate();
 		});
 	}
 }
 
 
 // Cart: Items: quantity: modify in DOM => Save in Local Storage
-function itemQuantityRefresh() {
+function itemQuantityUpdate() {
 	let quantitySelector = document.querySelectorAll(".itemQuantity");
 	for (let i = 0; i < quantitySelector.length; i++) {
 		quantitySelector[i].addEventListener("change", (e) => {
@@ -146,8 +146,8 @@ function itemQuantityRefresh() {
 			}
 			localStorage.setItem(localStorageKey, itemQuantity);
 
-			// Cart: Items: quantity: refresh => New quantity
-			totalItemInCartRefresh();
+			// Cart: Items: quantity: update => New quantity
+			totalItemInCartUpdate();
 		});
 	}
 }
