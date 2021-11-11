@@ -49,8 +49,8 @@ addToCartBtn.addEventListener("click", () => {
 		alert("Ajouter un article");
 	} else {
 		// Push in the localStorage
-		const itemInCart = [itemId, itemQuantity, itemColor];
-		localStorage.setItem("myItemInCart", JSON.stringify(itemInCart));
+		const itemInCart = [itemId, itemColor];
+		localStorage.setItem(itemInCart, itemQuantity);
 		window.location.href = "./cart.html";
 	}
 });
