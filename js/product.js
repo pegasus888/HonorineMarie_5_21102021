@@ -48,9 +48,26 @@ addToCartBtn.addEventListener("click", () => {
 	} else if (itemQuantity == 0) {
 		alert("Ajouter un article");
 	} else {
+
 		// Push to localStorage
-		const itemInCart = [itemId, itemColor];
-		localStorage.setItem(itemInCart, itemQuantity);
+		let cart = localStorage.getItem("cart");
+		if (cart === null) {
+			cart = [];
+		}
+		else {
+			cart = JSON.parse(cart);
+		}
+
+		const cartContent = {
+			itemId: idVerification(),
+			itemQuantity: document.getElementById("quantity").value,
+			itemColor: document.getElementById("colors").value
+		}
+
+		cart.push(cartContent);
+
+		//add cart to storage
+		localStorage.setItem( "cart", JSON.stringify(cart));
 		window.location.href = "./cart.html";
 	}
 });

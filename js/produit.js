@@ -30,10 +30,25 @@ addToCartBtn.addEventListener("click", () => {
 });
 
 // ***************
-// array in localStorage
-let cart = []
-cart.push("itemId")
-cart.push("itemQuantity")
-cart.push("itemColor")
+// Cart: Items: quantity: modify in DOM => Save in Local Storage
+function itemQuantityUpdate() {
+	let quantitySelector = document.querySelectorAll(".itemQuantity");
+	for (let i = 0; i < quantitySelector.length; i++) {
+		quantitySelector[i].addEventListener("change", (e) => {
+			e.preventDefault();
 
-localStorage.setItem("myCart", JSON.stringify(cart));
+			let articleDOM = quantitySelector[i].closest("article");
+			let itemId = articleDOM.dataset.id;
+			let itemColor = articleDOM.dataset.color;
+			let localStorageKey = [itemId, itemColor];
+			let itemQuantity = e.target.value;
+			if (itemQuantity == 0) {
+				alert("Ajouter un article");
+			}
+			localStorage.setItem(localStorageKey, itemQuantity);
+
+			// Cart: Items: quantity: update => New quantity
+			totalItemInCartUpdate();
+		});
+	}
+}
