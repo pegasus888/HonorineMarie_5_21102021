@@ -1,4 +1,4 @@
-// Check for the Id parameter in URL
+// Check for the Id in the URL
 function idVerification() {
 	let url = new URL(window.location.href);
 	let searchParams = new URLSearchParams(url.search);
@@ -10,7 +10,7 @@ function idVerification() {
 	}
 }
 
-// Only get the information for the specified product
+// Get Details for a specified product
 async function getInfoById() {
 	let id = idVerification();
 	try {
@@ -34,6 +34,7 @@ async function getInfoById() {
 		document.getElementById("colors").innerHTML += htmlContent;
 	});
 })();
+
 
 // Add to cart & localStorage
 const addToCartBtn = document.getElementById("addToCart");
@@ -59,14 +60,26 @@ addToCartBtn.addEventListener("click", () => {
 		}
 
 		const cartContent = {
-			itemId: idVerification(),
-			itemQuantity: document.getElementById("quantity").value,
-			itemColor: document.getElementById("colors").value
+			itemId: itemId,
+			itemQuantity: itemQuantity,
+			itemColor: itemColor
 		}
+		let trouver=0;
+		for (let i=0; i < cart.length; i++) {
 
-		cart.push(cartContent);
+			if ( itemId === cart[i].itemId ) {
+			if ( itemColor === cart[i].itemColor) {
+				trouver = 1;
+			cart[i].itemQuantity = Number(cart[i].itemQuantity) + Number(itemQuantity);
+			}
+			}
+		}
+			if ( trouver === 0 ) {
+				cart.push(cartContent);
+			}
 
-		//add cart to storage
+
+		// Add cart to Storage
 		localStorage.setItem( "cart", JSON.stringify(cart));
 		window.location.href = "./cart.html";
 	}

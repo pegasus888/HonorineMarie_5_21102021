@@ -5,10 +5,10 @@ fetch('http://localhost:3000/api/products')
     .then(products => {
 
 
-// Display all products on index.html
+// Display all products on Home page
 let result = '';
 products.forEach(product => {
-    console.log(product);
+    // console.log(product);
     result += `
     <a href="product.html?id=${product._id}">
         <article>

@@ -1,6 +1,6 @@
 /* Cart Page */
 
-// Single product: Get Id from Local Storage
+// Single product: Get itemId
 async function getDetailsItemId(kanap) {
 	try {
 		let response = await fetch(`http://localhost:3000/api/products/${kanap.itemId}`);
@@ -11,7 +11,7 @@ async function getDetailsItemId(kanap) {
 }
 
 
-// Cart: check if empty
+// Cart: Check if empty
 function emptyCart() {
 	if (localStorage.length == 0) {
 		document.getElementById("cart__items").innerHTML = "<p >Aucun article, visitez <a href='./index.html' style=' color:white; font-weight:700'>notre séléction</a>.</p>";
@@ -19,12 +19,12 @@ function emptyCart() {
 }
 
 
-// Display on cart.html
+// Display on Cart Page
 (async function displayEachItem() {
 	let displayHtml = "";
 	const itemContainer = document.getElementById("cart__items");
 
-	// Cart: check if empty
+	// Cart: Check if empty
 	emptyCart();
 	let cart = JSON.parse(localStorage.getItem("cart"));
 
@@ -58,13 +58,11 @@ function emptyCart() {
 	}
 	itemContainer.innerHTML += displayHtml;
 
-    // Single product: delete
+    // Single product: Delete
 	deleteItem();
-	// Single product: quantity
-	// itemQuantityUpdate();
-	// All products in cart: total
+	// Total products in cart: Update
 	totalItemInCartUpdate();
-	// All products in cart: total price
+	// All products in cart: Total price: Update
 	totalPriceUpdate();
 })();
 
@@ -72,7 +70,7 @@ function emptyCart() {
 
 /* Cart: Items Data */
 
-// Cart: total price
+// Cart: Items: Total price
 function totalPriceUpdate() {
 	let quantitySelector = document.querySelectorAll(".itemQuantity");
 	let totalCartPrice = 0;
@@ -86,7 +84,7 @@ function totalPriceUpdate() {
 }
 
 
-// Cart: Items: quantity
+// Cart: Items: Quantity
 function totalItemInCartUpdate() {
 	let quantitySelector = document.querySelectorAll(".itemQuantity");
 	let itemAmount = 0;
@@ -96,14 +94,14 @@ function totalItemInCartUpdate() {
 	const totalQuantityDisplay = document.getElementById("totalQuantity");
 	totalQuantityDisplay.innerHTML = itemAmount;
 
-	// Update total price => New total price
+	// Update Total price => New Total price
 	totalPriceUpdate();
-	// Cart: check if empty
+	// Cart: Check if empty
 	emptyCart();
 }
 
 
-// Cart: Items: delete
+// Cart: Items: Delete
 let productLocalStorage = JSON.parse(localStorage.getItem("cart"));
 
 			// Récupérer le panier
@@ -120,7 +118,7 @@ let productLocalStorage = JSON.parse(localStorage.getItem("cart"));
 
 				let productTotalQuantity = document.getElementById('totalQuantity');
 				productTotalQuantity.innerHTML = totalQuantity;
-				console.log(totalQuantity);
+				// console.log(totalQuantity);
 
 				// le prix: récupération
 				totalPrice = 0;
@@ -131,12 +129,12 @@ let productLocalStorage = JSON.parse(localStorage.getItem("cart"));
 
 				let productTotalPrice = document.getElementById('totalPrice');
 				productTotalPrice.innerHTML = totalPrice;
-				console.log(totalPrice);
+				// console.log(totalPrice);
 				}
 				getTotals();
 
 
-			// trouver même produit: même id + même color
+			// Trouver produit: même id + même color
 				let deleteItemBtns = document.querySelectorAll(".deleteItem");
 				for (let i = 0; i < deleteItemBtns.length; i++) {
 
@@ -148,7 +146,7 @@ let productLocalStorage = JSON.parse(localStorage.getItem("cart"));
 				localStorage.setItem("cart", JSON.stringify(productLocalStorage));
 				}
 
-			// réduire de 1 qté
+			// Modifier Quantité
 				function modifyItemQuant() {
 					let itemQuantModify = document.querySelectorAll(".itemQuantity");
 
@@ -156,7 +154,7 @@ let productLocalStorage = JSON.parse(localStorage.getItem("cart"));
 						itemQuantModify[n].addEventListener("change" , (event) => {
 							event.preventDefault();
 
-							// Sélection: Element à modifier en fonction de id & color
+							// Modifier en fonction de id & color
 							let quantityModif = productLocalStorage[n].productQuantity;
 							let itemQuantModifyValue = itemQuantModify[n].valueAsNumber;
 
@@ -175,17 +173,17 @@ let productLocalStorage = JSON.parse(localStorage.getItem("cart"));
 				modifyItemQuant();
 
 
-			// if qte 0 delete ligne panier
+			// Ligne panier: supprimer si Quantité 0
 				function deleteItem() {
 					let productLocalStorage = JSON.parse(localStorage.getItem("cart"));
 					let deleteItemBtns = document.querySelectorAll(".deleteItem");
 					for (let i = 0; i < deleteItemBtns.length; i++) {
 						deleteItemBtns[i].addEventListener("click", (event) => {
 							event.preventDefault();
-							console.log ("click");
+							// console.log ("click");
 
 
-								// Sélection: Element à modifier en fonction de id & color
+								// Modifier en fonction de id & color
 
 								let itemIdDelete = productLocalStorage[i].itemId;
 								let itemColorDelete = productLocalStorage[i].itemColor;
@@ -196,7 +194,7 @@ let productLocalStorage = JSON.parse(localStorage.getItem("cart"));
 					// Remettre en storage le panier
 						localStorage.setItem("cart", JSON.stringify(productLocalStorage));
 
-					// Rafraichir
+					// Rafraîchir
 					location.reload();
 							});
 						}
@@ -205,9 +203,9 @@ let productLocalStorage = JSON.parse(localStorage.getItem("cart"));
 
 
 
-/* Cart: User Data: REGEX */
+/* Cart:  REGEX */
 
-// User: input
+// User
 class Form {
 	constructor() {
 		this.firstName = document.getElementById("firstName").value;
@@ -219,25 +217,25 @@ class Form {
 }
 
 
-// User: input: Regex
+// User: inputs
 function userInputCheck() {
 	const userForm = new Form();
 	// Firstname
 	function validFirstName() {
 		const userFirstName = userForm.firstName;
 		const firstNameErrorMsg = document.getElementById("firstNameErrorMsg");
-		if (/^([A-Za-z]{3,20})?([-]{0,1})?([A-Za-z]{3,20})$/.test(userFirstName)) {
+		if (/^([A-Za-z]{2,20})?([-]{0,1})?([A-Za-z]{2,20})$/.test(userFirstName)) {
 			firstNameErrorMsg.innerText = "";
 			return true;
 		} else {
-			firstNameErrorMsg.innerText = "Prénom invalide, 3 à 20 caractères";
+			firstNameErrorMsg.innerText = "Prénom invalide, 2 à 20 caractères";
 		}
 	}
 	// Lastname
 	function validLastName() {
 		const userLastName = userForm.lastName;
 		const lastNameErrorMsg = document.getElementById("lastNameErrorMsg");
-		if (/^[A-Za-z]{2,20}$/.test(userLastName)) {
+		if (/^([A-Za-z]{2,20})?([-]{0,1})?([A-Za-z]{2,20})$/.test(userLastName)) {
 			lastNameErrorMsg.innerText = "";
 			return true;
 		} else {
@@ -259,7 +257,7 @@ function userInputCheck() {
 	function validCity() {
 		const userCity = userForm.city;
 		const cityErrorMsg = document.getElementById("cityErrorMsg");
-		if (/^[A-Za-z]{2,20}$/.test(userCity)) {
+		if (/^([A-Za-z]{2,20})?([-]{0,1})?([A-Za-z]{2,20})$/.test(userCity)) {
 			cityErrorMsg.innerText = "";
 			return true;
 		} else {
@@ -289,7 +287,7 @@ function userInputCheck() {
 
 /* Cart: Order */
 
-// Cart: products Id: array
+// Cart: Products Id: array
 function cartToSend() {
 
 	let cart = JSON.parse(localStorage.getItem("cart"));
@@ -301,7 +299,7 @@ function cartToSend() {
 }
 
 
-// Cart: products Id: array: valid => send to back => request Order Id
+// Cart: Products Id: array: valid => send to back => Request Order Id
 let userFormSubmit = document.getElementById("order");
 userFormSubmit.addEventListener("click", (e) => {
 	e.preventDefault();
@@ -329,7 +327,7 @@ userFormSubmit.addEventListener("click", (e) => {
 			body: JSON.stringify(toSend),
 		})
 
-			// Order Id: Url Storage
+			// Order Id
 			.then((response) => response.json())
 			.then((value) => {
 				localStorage.clear();
