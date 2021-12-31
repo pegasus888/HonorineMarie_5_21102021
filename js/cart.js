@@ -118,7 +118,7 @@ let productLocalStorage = JSON.parse(localStorage.getItem("cart"));
 
 				let productTotalQuantity = document.getElementById('totalQuantity');
 				productTotalQuantity.innerHTML = totalQuantity;
-				// console.log(totalQuantity);
+				console.log(totalQuantity);
 
 				// le prix: récupération
 				totalPrice = 0;
@@ -129,7 +129,7 @@ let productLocalStorage = JSON.parse(localStorage.getItem("cart"));
 
 				let productTotalPrice = document.getElementById('totalPrice');
 				productTotalPrice.innerHTML = totalPrice;
-				// console.log(totalPrice);
+				console.log(totalPrice);
 				}
 				getTotals();
 
